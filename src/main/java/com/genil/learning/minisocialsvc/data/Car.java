@@ -17,7 +17,7 @@ public class Car {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @Column(name = "type_id")
+    @JoinColumn(name = "type_id")
     private CarType carType; // Sports / Luxury / Economy
     private String name;
 }
