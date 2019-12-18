@@ -43,3 +43,31 @@ select category, price_min, price_max, name
 from car, car_type
 where car.type_id = car_type.id;
 
+/*
+SQL docker commands used
+docker run -p 3306:3306 -d --name mysql -e MYSQL_ROOT_PASSWORD=password123 mysql/mysql-server
+
+docker ps
+
+CONTAINER ID        IMAGE                COMMAND                  CREATED             STATUS                            PORTS                               NAMES
+2a7ddb28e587        mysql/mysql-server   "/entrypoint.sh mysq…"   8 seconds ago       Up 7 seconds (health: starting)   0.0.0.0:3306->3306/tcp, 33060/tcp   mysql
+
+if docker is not running
+start by
+
+docker start mysql
+
+Antonys-MacBook-Pro:~ genil$ docker exec -it mysql bash
+bash-4.2# mysql -uroot -ppassword123
+mysql> CREATE USER 'tacos'@'%' IDENTIFIED BY 'password123';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> GRANT ALL PRIVILEGES ON * . * TO 'tacos'@'%'
+    -> ;
+Query OK, 0 rows affected (0.00 sec)
+
+If it is a new project in IntelliJ IDE, copy the connection to clipboard and paste it right in the new connection tab.
+Make sure to run the queries from SYS schema.
+
+*/
+
