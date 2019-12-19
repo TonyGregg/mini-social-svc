@@ -28,6 +28,9 @@ public class CarTypeRepTest {
         List<CarType> carTypes = carTypeRep.findAll();
 //        log.info("{} ",carTypes);
         log.info("# of car types "+carTypes.size());
+        for ( CarType carType : carTypes ) {
+            log.info("{} ", carType);
+        }
         assertTrue(carTypes.size()>0);
     }
 

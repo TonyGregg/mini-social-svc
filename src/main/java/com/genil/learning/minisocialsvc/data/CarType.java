@@ -1,5 +1,6 @@
 package com.genil.learning.minisocialsvc.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.List;
  **/
 @Entity(name = "car_type")
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class CarType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,4 +22,16 @@ public class CarType {
     private Long priceMin;
     @Column(name = "price_max")
     private Long priceMax;
+
+    private String category;
+
+    @Override
+    public String toString() {
+        return "CarType{" +
+                "id=" + id +
+                ", priceMin=" + priceMin +
+                ", priceMax=" + priceMax +
+                ", category=" + category +
+                '}';
+    }
 }
