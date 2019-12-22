@@ -19,7 +19,6 @@ public class Car {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "type_id")
-    @JsonIgnore
     private CarType carType; // Sports / Luxury / Economy
     private String name;
 }

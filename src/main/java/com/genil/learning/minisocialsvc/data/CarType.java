@@ -1,5 +1,6 @@
 package com.genil.learning.minisocialsvc.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
@@ -16,10 +17,13 @@ public class CarType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonIgnore
     @OneToMany( mappedBy = "carType")
     private List<Car> cars;
+
     @Column(name = "price_min")
     private Long priceMin;
+
     @Column(name = "price_max")
     private Long priceMax;
 
