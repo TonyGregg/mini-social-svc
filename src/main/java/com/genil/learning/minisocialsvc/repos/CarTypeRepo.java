@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Antony Genil on 12/18/19 at 16 05 for mini-social-svc
  **/
-public interface CarTypeRep extends JpaRepository<CarType, Long> {
+public interface CarTypeRepo extends JpaRepository<CarType, Long> {
     List<CarType> findAll();
     List<CarType> findAll(Sort sort);
     CarType save(CarType carType);
