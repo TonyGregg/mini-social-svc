@@ -2,6 +2,7 @@ package com.genil.learning.minisocialsvc.data;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -18,6 +19,7 @@ public class Car {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "type_id")
+    @JsonIgnore
     private CarType carType; // Sports / Luxury / Economy
     private String name;
 }
