@@ -8,3 +8,7 @@ spring:
 #logging:
 #  level: DEBUG
 #  org.springframework.security: DEBUG
+okta:
+  oauth2:
+    client-id: 0oa2c5c157yzmUq6u
+    issuer: https://dev-405161.okta.com/oauth2/default
