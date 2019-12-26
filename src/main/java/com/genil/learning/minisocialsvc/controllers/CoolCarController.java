@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,15 @@ public class CoolCarController {
         List<Car> cars = carRepo.findAll(Sort.by(Sort.Direction.ASC,"name"));
         log.info("# of cars returned "+cars.size());
         return cars;
+    }
+
+    @GetMapping("getCar/{id}")
+    public Car getCar(@PathVariable(value = "id") Long id) {
+        log.info("Id passed {} ", id);
+        Car car = carRepo.getOne(id);
+        log.info("Car retrieved {} ", car);
+        return car;
+
     }
 
 }
