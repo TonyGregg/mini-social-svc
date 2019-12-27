@@ -1,5 +1,6 @@
 package com.genil.learning.minisocialsvc.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.minidev.json.annotate.JsonIgnore;
@@ -13,6 +14,7 @@ import javax.persistence.*;
 @Entity(name = "car")
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Car {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)

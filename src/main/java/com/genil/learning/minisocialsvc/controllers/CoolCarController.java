@@ -30,7 +30,7 @@ public class CoolCarController {
         return cars;
     }
 
-    @GetMapping("getCar/{id}")
+    @GetMapping("/getCar/{id}")
     public Car getCar(@PathVariable(value = "id") Long id) {
         log.info("Id passed {} ", id);
         Car car = carRepo.getOne(id);
