@@ -7,7 +7,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 
 import static org.hamcrest.Matchers.hasSize;
@@ -38,8 +40,8 @@ public class CoolCarControllerTest {
 
     @Test
     public void getCar() throws Exception{
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/cars-social/getCar/2"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/cars-social/getCar/3"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("BMW i3"));
     }
 }

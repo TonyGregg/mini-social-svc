@@ -10,5 +10,5 @@ spring:
 #  org.springframework.security: DEBUG
 okta:
   oauth2:
-    client-id: 0oa2c5c157yzmUq6u
+    client-id: 0oa2c5c157yzmUq6u357
     issuer: https://dev-405161.okta.com/oauth2/default
