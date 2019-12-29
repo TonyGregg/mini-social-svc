@@ -71,3 +71,43 @@ Make sure to run the queries from SYS schema.
 
 */
 
+-- Customer and order tables
+
+create table customers (customer_id bigint NOT NULL auto_increment,
+	customer_name varchar(60) not null,
+	contact_name varchar(40) not null,
+	country varchar(50) not null,
+    primary key (`customer_id`));
+
+create table orders (order_id bigint NOT NULL auto_increment,
+	customer_id bigint not null,
+	order_date date not null,
+    primary key (`order_id`));
+
+insert into customers values(1, 'Alfreds Futterkiste','Maria Anders', 'Germany');
+insert into customers values(2, 'Kailavan','Kannamma', 'India');
+insert into customers values(3, 'John Phalmer','Serneena Phalmer', 'USA');
+insert into customers values(4, 'Kung Fi','Mang Yo', 'China');
+
+
+insert into orders values(1, 2, '2019-02-14');
+insert into orders values(2, 4, '2019-12-23');
+insert into orders values(3, 12, '2019-10-05');
+insert into orders values(4, 14, '2018-07-06');
+
+
+SELECT orders.Order_ID, customers.customer_Name, orders.order_Date
+FROM orders
+INNER JOIN customers ON orders.customer_ID=customers.customer_ID;
+
+-- Right Join. Show all records from right table (customers table) and only the matching record from the left table
+
+SELECT orders.Order_ID, customers.customer_Name, orders.order_Date, customers.country
+FROM orders right  JOIN customers
+    ON customers.customer_ID=orders.customer_ID;
+
+-- Left Join. Show all records from left table and only the matching record from the right table
+
+SELECT orders.Order_ID, customers.customer_Name, orders.order_Date, customers.country
+FROM orders left  JOIN customers
+    ON customers.customer_ID=orders.customer_ID;
