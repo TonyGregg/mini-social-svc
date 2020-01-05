@@ -32,7 +32,7 @@ public class CoolCarControllerTest {
 
     @Test
     public void getAllCars() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/cars-social/getAllCars"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/cars-social/cars"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(10)));
     }
@@ -40,7 +40,29 @@ public class CoolCarControllerTest {
 
     @Test
     public void getCar() throws Exception{
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/cars-social/getCar/3"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/cars-social/car/3"))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("BMW i3"));
+    }
+
+
+    @Test
+    public void newCar() throws Exception{
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/cars-social/car/3"))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("BMW i3"));
+    }
+
+    @Test
+    public void replaceCar() throws Exception{
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/cars-social/car/3"))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("BMW i3"));
+    }
+
+    @Test
+    public void deleteCar() throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/cars-social/car/3"))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("BMW i3"));
     }
