@@ -1,5 +1,8 @@
+endpoints:
+  health:
+    enabled: false
 server:
-  port: 9090
+  ip: 5.7.8.10
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/healthapp

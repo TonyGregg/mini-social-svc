@@ -6,6 +6,7 @@ import com.genil.learning.minisocialsvc.repos.CarRepo;
 import com.genil.learning.minisocialsvc.utils.hal.CarEntityAssembler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
 
 import org.springframework.hateoas.CollectionModel;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.hateoas.EntityModel;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +32,8 @@ public class CoolCarController {
     private CarRepo carRepo;
     @Autowired
     CarEntityAssembler carEntityAssembler;
+    @Value("${server.ip}")
+    String serverIp;
 
     @GetMapping("/cars")
     public CollectionModel<EntityModel<Car>> getAllCars() {
@@ -47,6 +51,7 @@ public class CoolCarController {
     @GetMapping("/cars/{id}")
     public  EntityModel<Car> getCar(@PathVariable(value = "id") Long id) {
         log.info("Id passed {} ", id);
+        log.info(("Server IP address "+serverIp));
         Car car = carRepo.findById(id)
                 .orElseThrow(() -> new CarNotFoundException(id));
 //        return new EntityModel<>(car,
@@ -68,7 +73,7 @@ public class CoolCarController {
      */
     @PostMapping("/cars")
     @ResponseStatus(HttpStatus.CREATED)
-    EntityModel<Car> newCar(@RequestBody Car car) {
+    EntityModel<Car> newCar(@Valid @RequestBody Car car) {
         EntityModel<Car> carEntityModel = carEntityAssembler.toModel(carRepo.save(car));
         return carEntityModel;
     }

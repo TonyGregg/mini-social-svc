@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 /**
  * Created by Antony Genil Gregory on 12/18/2019 1:11 PM
@@ -22,5 +23,8 @@ public class Car {
     @ManyToOne
     @JoinColumn(name = "type_id")
     private CarType carType; // Sports / Luxury / Economy
+    @NotBlank(message = "Car Name Cannot be blank")
     private String name;
+    @NotBlank(message = "Every car needs an owner !")
+    private String ownerName;
 }
