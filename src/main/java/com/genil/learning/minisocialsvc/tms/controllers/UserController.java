@@ -1,6 +1,7 @@
 package com.genil.learning.minisocialsvc.tms.controllers;
 
 import com.genil.learning.minisocialsvc.tms.model.User;
+import com.genil.learning.minisocialsvc.tms.security.SecurityService;
 import com.genil.learning.minisocialsvc.tms.service.UserService;
 import com.genil.learning.minisocialsvc.utils.hal.UserEntityAssembler;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +12,9 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -24,6 +27,9 @@ import java.util.stream.Collectors;
 public class UserController {
     @Autowired
     UserService userService;
+    @Autowired
+    SecurityService securityService;
+
     @Autowired
     UserEntityAssembler userEntityAssembler;
 
@@ -66,4 +72,22 @@ public class UserController {
         userService.deleteUser(user);
         return user;
     }
+
+    @GetMapping("/security/generate/token")
+    @ResponseBody
+    public Map<String, String> generateToken(@RequestParam(value = "subject") String subject) {
+        String token = securityService.createToken(subject, (2 * 1000 *  60));
+        Map<String, String> secMap = new LinkedHashMap<>();
+        secMap.put("result", token);
+        return secMap;
+    }
+    @GetMapping("/security/get/subject")
+    @ResponseBody
+    public Map<String, String> getSubject(@RequestParam(value = "token") String token) {
+        String subject = securityService.getSubject(token);
+        Map<String, String> secMap = new LinkedHashMap<>();
+        secMap.put("result", subject);
+        return secMap;
+    }
+
 }
