@@ -1,7 +1,7 @@
 package com.genil.learning.minisocialsvc.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.genil.learning.minisocialsvc.tms.utils.ValidInvoice;
+import com.genil.learning.minisocialsvc.tms.adapter.validator.Invoice;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.minidev.json.annotate.JsonIgnore;
@@ -30,7 +30,7 @@ public class Car {
     @NotBlank(message = "Every car needs an owner !")
     private String ownerName;
 
-    @ValidInvoice(message = "Invoice number should start with IN !!!!")
+    @Invoice(message = "Invoice number should start with IN !!!!")
     private String invoiceNumber;
     @Transient
     @NotBlank(message = "Owners country can't be null")
