@@ -4,6 +4,7 @@ import com.genil.learning.minisocialsvc.data.Car;
 import com.genil.learning.minisocialsvc.exception.CarNotFoundException;
 import com.genil.learning.minisocialsvc.repos.CarRepo;
 import com.genil.learning.minisocialsvc.utils.hal.CarEntityAssembler;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,6 +37,8 @@ public class CoolCarController {
     String serverIp;
 
     @GetMapping("/cars")
+//    @ApiOperation(value = "Fetch cars list", nickname = "FetchCars Quick", notes = "This endpoint will fetch all the cars" +
+//            "in the order of ID ascending")
     public CollectionModel<EntityModel<Car>> getAllCars() {
         log.info("Inside getAllCars method ");
         List<Car> cars = carRepo.findAll(Sort.by(Sort.Direction.ASC,"id"));

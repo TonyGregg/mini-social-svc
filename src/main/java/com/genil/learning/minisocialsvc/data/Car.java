@@ -20,7 +20,7 @@ public class Car {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
+
     @JoinColumn(name = "type_id")
     private CarType carType; // Sports / Luxury / Economy
     @NotBlank(message = "Car Name Cannot be blank")
