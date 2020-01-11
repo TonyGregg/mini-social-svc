@@ -1,6 +1,3 @@
-endpoints:
-  health:
-    enabled: false
 server:
   ip: 5.7.8.10
 spring:

@@ -11,6 +11,8 @@ server:
   port: 9090
   ip: 1.2.3.4
 spring:
+  application:
+    name: Mini-Cars-Inc
   datasource:
     url: jdbc:mysql://localhost:3306/sys
     userName: tacos
@@ -18,7 +20,15 @@ spring:
 #logging:
 #  level: DEBUG
 #  org.springframework.security: DEBUG
-  okta:
+logging:
+  pattern:
+    console: "%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"
+    file: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  level:
+      org.springframework.web: DEBUG
+  file: app.log
+
+okta:
   oauth2:
     client-id: 0oa2c5c157yzmUq6u357
     issuer: https://dev-405161.okta.com/oauth2/default
