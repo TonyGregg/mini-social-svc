@@ -1,5 +1,6 @@
 package com.genil.learning.minisocialsvc.tms.model;
 
+import com.genil.learning.minisocialsvc.tms.adapter.validator.Invoice;
 import lombok.Data;
 
 import javax.validation.constraints.Min;
@@ -23,6 +24,9 @@ public class User {
             this.userId = userId;
             this.userName = userName;
         }
+
+        @Invoice(message = "Please enter valid invoice Number. It must start with IN...")
+        private String invoiceNumber;
         // getter and setter methods
 
 }
