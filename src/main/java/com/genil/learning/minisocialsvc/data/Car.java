@@ -23,6 +23,7 @@ public class Car {
     private Long id;
 
     @JoinColumn(name = "type_id")
+    @ManyToOne
     private CarType carType; // Sports / Luxury / Economy
     @NotBlank(message = "Car Name Cannot be blank")
     private String name;
