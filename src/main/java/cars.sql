@@ -21,6 +21,8 @@ create table car (
   name varchar(35) not null,
   PRIMARY KEY (id),
   foreign key(type_id) references car_type(id));
+
+alter table car add invoice_number varchar(25) not null;
     
     
 
