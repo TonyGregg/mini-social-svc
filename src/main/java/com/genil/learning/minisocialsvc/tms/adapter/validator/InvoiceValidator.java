@@ -14,7 +14,8 @@ public class InvoiceValidator implements ConstraintValidator<Invoice, String> {
     }
 
     @Override
-    public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        return false;
+    public boolean isValid(String invoiceNumber, ConstraintValidatorContext constraintValidatorContext) {
+        return (invoiceNumber.isBlank() || invoiceNumber.isEmpty())? false :
+                (invoiceNumber.startsWith("IN") ? true: false);
     }
 }
