@@ -1,8 +1,12 @@
 package com.genil.learning.minisocialsvc.advice;
 
+import com.genil.learning.minisocialsvc.exception.CarErrorResponse;
+import com.genil.learning.minisocialsvc.exception.CarNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
@@ -19,6 +23,7 @@ import java.util.stream.Collectors;
  * For project : mini-social-svc
  **/
 @ControllerAdvice
+@Slf4j
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
@@ -40,5 +45,20 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 
         return new ResponseEntity<>(body, headers, status);
 
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleBindException(BindException bindException, HttpHeaders headers, HttpStatus status,
+                                                         WebRequest request) {
+        log.error("Error");
+        String errors = bindException.getAllErrors()
+                .stream()
+                .map(fieldError-> fieldError.getDefaultMessage())
+                .collect(Collectors.joining(","));
+
+        CarErrorResponse carErrorResponse = new CarErrorResponse();
+        carErrorResponse.setError(errors);
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(carErrorResponse);
     }
 }
