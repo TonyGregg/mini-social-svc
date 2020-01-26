@@ -54,7 +54,7 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         String errors = bindException.getAllErrors()
                 .stream()
                 .map(fieldError-> fieldError.getDefaultMessage())
-                .collect(Collectors.joining(","));
+                .collect(Collectors.joining( ","));
 
         CarErrorResponse carErrorResponse = new CarErrorResponse();
         carErrorResponse.setError(errors);
