@@ -1,5 +1,6 @@
 package com.genil.learning.minisocialsvc.tms.utils;
 
+import com.genil.learning.minisocialsvc.tms.adapter.validator.InvoiceValidator;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

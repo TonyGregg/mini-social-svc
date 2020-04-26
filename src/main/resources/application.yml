@@ -40,3 +40,5 @@ info:
   helpline:
     email: admin@antony.com
     phone: 0120-32-5252
+enable:
+  swagger: true
