@@ -71,3 +71,14 @@ transport:
       common: flight
   music:
     default-folder: Rahman
+validations:
+  regex: "^\\.|\\\\|&\([<\\[>.)"
+  xssPattern: "&#|[<\\[>\\]\\^]"
+  messages:
+    incorrect.value: "Incorrect value"
+    blank.value: "Blank value"
+    cmponentSK.incorrect.value: "ComponentSK is incorrect value"
+    incorrect.date.value: "Date is invalid"
+    recordSize.invalid: "Record size is invalid"
+    edocType.invalid:  "E document key is invalid"
+    missing.params: "Missing request parameters"

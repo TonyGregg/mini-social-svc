@@ -7,7 +7,7 @@ import lombok.Data;
  * For project : mini-social-svc
  **/
 @Data
-public class CarErrorResponse {
-    private Object error;
+public class CarErrorResponse<T> {
+    private T error;
 
 }

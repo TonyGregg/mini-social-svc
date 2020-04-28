@@ -88,6 +88,7 @@ public class CoolCarController {
      * @return
      */
     @PutMapping("/cars/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     Car replaceCar(@RequestBody Car newCar, @PathVariable Long id) {
         log.info("Id passed in put "+id);
         return carRepo.findById(id)
