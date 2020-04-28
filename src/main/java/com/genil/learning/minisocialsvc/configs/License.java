@@ -1,4 +1,4 @@
-package configs;
+package com.genil.learning.minisocialsvc.configs;
 
 /**
  * Created by Antony Genil on 2019-06-26 at 19 45 for licensing-service

@@ -1,4 +1,4 @@
-package configs;
+package com.genil.learning.minisocialsvc.configs;
 
 public class Server {
 

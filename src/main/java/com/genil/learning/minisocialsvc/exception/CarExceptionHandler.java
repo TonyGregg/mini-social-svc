@@ -1,6 +1,7 @@
 package com.genil.learning.minisocialsvc.exception;
 
-import configs.ValidationErrorConfig;
+
+import com.genil.learning.minisocialsvc.configs.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -14,7 +15,11 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
+import java.io.IOException;
+import java.net.SocketException;
 import java.sql.SQLException;
 import java.util.stream.Collectors;
 
@@ -24,7 +29,8 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 @Slf4j
 public class CarExceptionHandler extends ResponseEntityExceptionHandler {
-@Autowired private ValidationErrorConfig validationErrorConfig;
+    @Autowired
+    private ValidationErrorConfig validationErrorConfig;
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
@@ -84,6 +90,35 @@ public class CarExceptionHandler extends ResponseEntityExceptionHandler {
         CarErrorResponse carErrorResponse = buildCarErrorResponse("SQL exception has occurred - "
                 + sqlException.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value(), sqlException);
         return new ResponseEntity<>(carErrorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     *
+     * @param exception
+     * @return
+     */
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<CarErrorResponse> handleUnknownException(Exception exception) {
+        CarErrorResponse carErrorResponse = null;
+        HttpStatus httpStatus;
+        if (exception instanceof SocketException) {
+            carErrorResponse = buildCarErrorResponse("Socket Exception Occurred - "
+                    + exception.getMessage(), HttpStatus.REQUEST_TIMEOUT.value(), exception);
+            httpStatus = HttpStatus.REQUEST_TIMEOUT;
+        } else if (exception instanceof IOException) {
+            carErrorResponse = buildCarErrorResponse("Exception reading file stream - "
+                    + exception.getMessage(), HttpStatus.BAD_REQUEST.value(), exception);
+            httpStatus = HttpStatus.BAD_REQUEST;
+        } else if (exception instanceof SAXException || exception instanceof SAXParseException) {
+            carErrorResponse = buildCarErrorResponse("Exception in parsing contents - "
+                    + exception.getMessage(), HttpStatus.BAD_REQUEST.value(), exception);
+            httpStatus = HttpStatus.BAD_REQUEST;
+        } else {
+            carErrorResponse = buildCarErrorResponse("Exception occurred - "
+                    + exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value(), exception);
+            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        return new ResponseEntity<>(carErrorResponse, httpStatus);
     }
 
 

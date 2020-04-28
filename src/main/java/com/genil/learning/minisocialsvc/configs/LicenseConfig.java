@@ -1,4 +1,4 @@
-package configs;
+package com.genil.learning.minisocialsvc.configs;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

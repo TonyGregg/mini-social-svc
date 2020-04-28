@@ -1,4 +1,4 @@
-//package configs;
+//package com.genil.learning.minisocialsvc.configs;
 //
 //import com.google.common.base.Predicates;
 //import org.springframework.beans.factory.annotation.Value;

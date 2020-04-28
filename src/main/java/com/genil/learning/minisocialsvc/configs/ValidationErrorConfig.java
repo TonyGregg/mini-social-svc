@@ -1,4 +1,4 @@
-package configs;
+package com.genil.learning.minisocialsvc.configs;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

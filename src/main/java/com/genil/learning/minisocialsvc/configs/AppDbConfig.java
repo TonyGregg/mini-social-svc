@@ -1,4 +1,4 @@
-package configs;
+package com.genil.learning.minisocialsvc.configs;
 
 import com.genil.learning.minisocialsvc.tms.repos.JdbcUserDAO;
 import com.genil.learning.minisocialsvc.tms.repos.MongoDAO;

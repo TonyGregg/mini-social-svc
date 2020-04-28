@@ -72,8 +72,8 @@ transport:
   music:
     default-folder: Rahman
 validations:
-  regex: "^\\.|\\\\|&\([<\\[>.)"
-  xssPattern: "&#|[<\\[>\\]\\^]"
+  regex: "^\\.|"
+  xssPattern: "&#|[<\\[>"
   messages:
     incorrect.value: "Incorrect value"
     blank.value: "Blank value"
@@ -82,3 +82,4 @@ validations:
     recordSize.invalid: "Record size is invalid"
     edocType.invalid:  "E document key is invalid"
     missing.params: "Missing request parameters"
+tracer: Tony & G
